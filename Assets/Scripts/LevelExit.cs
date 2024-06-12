@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
-    [SerializeField]float levelLoadDelay = 1f;
+    [SerializeField]float levelLoadDelay = 0.5f;
     private void OnTriggerEnter2D(Collider2D other)
     {//in case we mess up physics we can specify tag
         if (other.tag == "Player")
