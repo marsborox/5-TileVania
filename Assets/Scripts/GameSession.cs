@@ -1,12 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
+    [SerializeField] int score = 0;
+    [SerializeField] TextMeshProUGUI livesText;
+    [SerializeField] TextMeshProUGUI scoreText;
+    
+
+
     
     //will be called every time this is called,
     //when we start game, die or restart
@@ -26,6 +34,12 @@ public class GameSession : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    private void Start()
+    {
+        livesText.text = playerLives.ToString();
+        scoreText.text = score.ToString();
+    }
+
     public void ProcessPlayerDeath()
     {
         //we must add this into die Method in Player
@@ -39,14 +53,26 @@ public class GameSession : MonoBehaviour
             ResetGameSession();
         }
     }
+
+    public void AddToScore(int pointsToAdd)
+    {
+        score += pointsToAdd;
+        scoreText.text = score.ToString();
+    }
     void TakeLife()
     {
         playerLives--;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+        //we must add this here so everytime plr dies
+        //this updates the text
+        livesText.text = playerLives.ToString();
     }
     private void ResetGameSession()
-    {//we call method LoadScene from SceneManager
+    {
+        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        
+        //we call method LoadScene from SceneManager
         //we call scene 0
         SceneManager.LoadScene(0);
         Destroy(gameObject);

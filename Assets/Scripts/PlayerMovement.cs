@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     float gravityScaleAtStart;
 
 
-    bool isAlive;
+    public bool isAlive;
     [SerializeField] Vector2 deathKick = new Vector2(40f,25f);
 
     void Start()
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
         ClimbLadder();
         Die();
-        Debug.Log(isAlive);
+        
     }
     void OnMove(InputValue value)
     {
@@ -122,7 +122,6 @@ public class PlayerMovement : MonoBehaviour
             myAnimator.SetTrigger("IsDead");
             myRigidbody.velocity = deathKick;
             FindObjectOfType<GameSession>().ProcessPlayerDeath();
-            
         }
     }
 

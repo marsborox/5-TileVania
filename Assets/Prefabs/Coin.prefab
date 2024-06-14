@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPickupSFX: {fileID: 8300000, guid: 8bd126402d7ec84429776ffeeaa3c7dc, type: 3}
+  pointsToPickup: 100
 --- !u!82 &-3533287809478467367
 AudioSource:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.2573068
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
